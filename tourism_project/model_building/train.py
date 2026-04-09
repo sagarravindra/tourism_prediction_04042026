@@ -16,6 +16,7 @@ from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
 from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
 
 mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment("mlops-training-experiment")
