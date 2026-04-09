@@ -141,7 +141,7 @@ with mlflow.start_run():
     })
 
     # Save the model locally
-    model_path = "best_machine_failure_model_v1.joblib"
+    model_path = "best_tourism-prediction-model_v1.joblib"
     joblib.dump(best_model, model_path)
 
     # Log the model artifact
