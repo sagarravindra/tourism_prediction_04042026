@@ -30,49 +30,8 @@ Xtrain, Xtest, ytrain, ytest = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-binary_features = ['Gender']
-low_card_cat = ['TypeofContact', 'MaritalStatus']
-high_card_cat = ['Occupation', 'ProductPitched', 'Designation']
-
-#For columns Passport and OwnCar, no encoding is required as they have 1 and 0 values
-numeric_features = [
-    'Age',
-    'CityTier',
-    'DurationOfPitch',
-    'NumberOfPersonVisiting',
-    'NumberOfFollowups',
-    'PreferredPropertyStar',
-    'NumberOfTrips',
-    'PitchSatisfactionScore',
-    'NumberOfChildrenVisiting',
-    'MonthlyIncome'
-]
-
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('binary', binary_transformer, binary_features),
-        ('low_card', low_card_transformer, low_card_cat),
-        ('high_card', high_card_transformer, high_card_cat),
-        ('num', numeric_transformer, numeric_features)
-    ],
-    remainder='passthrough'  # keeps Passport, OwnCar etc
-)
-
-
-# Split into X (features) and y (target)
-X = df.drop(columns=[target_col])
-y = df[target_col]
-
-# Perform train-test split
-Xtrain, Xtest, ytrain, ytest = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-Xtrain_transformed = preprocessor.fit_transform(Xtrain)
-Xtest_transformed = preprocessor.transform(Xtest)
-
-Xtrain_transformed.to_csv("Xtrain.csv",index=False)
-Xtest_transformed.to_csv("Xtest.csv",index=False)
+Xtrain.to_csv("Xtrain.csv",index=False)
+Xtest.to_csv("Xtest.csv",index=False)
 ytrain.to_csv("ytrain.csv",index=False)
 ytest.to_csv("ytest.csv",index=False)
 
