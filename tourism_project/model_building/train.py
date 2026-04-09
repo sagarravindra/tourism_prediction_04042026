@@ -53,9 +53,11 @@ numeric_features = [
 ]
 
 # Set the clas weight to handle class imbalance
+ytrain = ytrain.squeeze()
+ytest = ytest.squeeze()
 neg = (ytrain == 0).sum()
 pos = (ytrain == 1).sum()
-class_weight = neg / pos
+class_weight = float(neg / pos)
 
 # Define the preprocessing steps
 # Preprocessor
